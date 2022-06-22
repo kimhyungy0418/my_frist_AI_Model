@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포켓몬도감만들기</title>
+    <title>Classification of six dog breeds </title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>나만의 포켓몬도감만들기</h1>
-    <p>피카츄, 파이리, 꼬부기를 구별해서 이에 대한 설명을 보여주는 웹 앱</p>
+    <h1>6가지 강아지 종 분류하기</h1>
+    <p>골든리트리버, 시츄, 말티즈, 보더콜리, 브렌치 불독, 토이푸들을 구별해서 이에 대한 설명을 보여주는 웹 앱</p>
     <button type="button" onclick="init()">Start</button>
     <button type="button" onclick="predict()">Predict</button>
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -42,7 +42,7 @@
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
         // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/zt9akGJHs/";
+        const URL = "https://teachablemachine.withgoogle.com/models/0sdSmVoXB/";
 
         let model, webcam, labelContainer, maxPredictions;
 
@@ -76,19 +76,39 @@
             var image = document.getElementById("my-image")
             const prediction = await model.predict(image, false);
             if(prediction[0].probability > 0.7){
-                labelContainer.childNodes[0].innerHTML = "위 포켓몬은 피카츄입니다."
-                labelContainer.childNodes[1].innerHTML = "피카츄는 포켓몬스터에 등장하는 가상의 생명체이다. 애니메이션과 비디오게임에서는 오오타니 이쿠에가 그 목소리를 맡고 있다. 귀여운 전기 포켓몬을 그려달라는 스기모리 켄의 주문을 받아 니시다 아쓰코가 디자인하였다. 포켓몬 애니메이션에서 주인공 지우의 첫 포켓몬이자 파트너이다."
+                labelContainer.childNodes[0].innerHTML = "위 강아지는 골든리트리버입니다."
+                labelContainer.childNodes[1].innerHTML = "원산지는 영국의 스코틀랜드 지역이다.이름대로 윤기가 흐르는 크림빛 또는 금빛의 풍성한 털이 가장 큰 특징이며 은은하게 귀티가 흐르는 인상이다. 신장 51~61cm, 체중 25~40kg 정도이다."
+                labelContainer.childNodes[2].innerHTML = prediction[0].className + ": " + prediction[0].probability.toFixed(2) + "퍼센트입니다.";
             }
             else if(prediction[1].probability > 0.7){
-                labelContainer.childNodes[0].innerHTML = "위 포켓몬은 파이리입니다."
-                labelContainer.childNodes[1].innerHTML = "《파이리》는 포켓몬스터 시리즈에 등장하는 가공의 캐릭터이다. 한국명인 '파이리'는 영어로 불을 뜻하는 'Fire'와 꼬리의 합성어이다."
+                labelContainer.childNodes[0].innerHTML = "위 강아지는 시츄입니다."
+                labelContainer.childNodes[1].innerHTML = "이름에서 알 수 있듯이 본디 중국 개다. 좋은 품종은 아름답고 긴 황금색의 가까운 갈색과 흰색 털이 나 있다. 다른 견종과 다르게 시추는 순종에 정해진 색이 없다.성격은 모든 견종 중에서 가장 온순한 편이다. 대중적인 견종 중에서 가장 공격성이 낮으며, 가장 덜 짖는 견종으로 알려져 있다."
+                labelContainer.childNodes[2].innerHTML = prediction[1].className + ": " + prediction[1].probability.toFixed(2) + "퍼센트입니다.";
             }
             else if(prediction[2].probability > 0.7){
-                labelContainer.childNodes[0].innerHTML = "위 포켓몬은 꼬부기입니다."
-                labelContainer.childNodes[1].innerHTML = "《꼬부기》는 포켓몬스터 시리즈에 등장하는 가공의 캐릭터이다. 분류는 꼬마거북 포켓몬이다."
+                labelContainer.childNodes[0].innerHTML = "위 강아지는 말티즈입니다."
+                labelContainer.childNodes[1].innerHTML = "작은 체구와 깨끗해 보이는 하얀 털을 가진 귀여운 외모로 한국에서 반려견으로 인기가 많은 종이다.몰티즈는 다른 소형견종들과 달리 인위적인 교배가 아니라 자연 발생한 견종이다.활발하고 놀기를 좋아하는 성격이다."
+                labelContainer.childNodes[2].innerHTML = prediction[2].className + ": " + prediction[2].probability.toFixed(2) + "퍼센트입니다.";
+            }
+            else if(prediction[3].probability > 0.7){
+                labelContainer.childNodes[0].innerHTML = "위 강아지는 보더콜리입니다."
+                labelContainer.childNodes[1].innerHTML = "원산지는 영국으로 브리튼 섬의 품종인 콜리의 일종. 잉글랜드와 스코틀랜드의 국경(border) 지방에서 양치기 개로 사용되었기 때문에 보더 콜리라는 이름이 붙었다.세계에서 가장 머리가 좋은 개로 유명하며 그 명성에 걸맞게 학습 능력이 매우 뛰어나다. "
+                labelContainer.childNodes[2].innerHTML = prediction[3].className + ": " + prediction[3].probability.toFixed(2) + "퍼센트입니다.";
+            }
+            else if(prediction[4].probability > 0.7){
+                labelContainer.childNodes[0].innerHTML = "위 강아지는 프렌치 불독입니다."
+                labelContainer.childNodes[1].innerHTML = "프랑스가 원산인 견종으로, 25~33cm 정도의 체고와 9~13kg 정도의 무게를 가진 중형견이다.원래 투견이었던 불도그를 소형화하여 개량했기 때문에 온순해졌지만 공격적인 본능이 남아있다. 대체로 온순하고 애교가 있지만 개체에 따라 성질이 사나울 수 있으며 예민한 반응을 하여 사람을 공격하기도 한다."
+                labelContainer.childNodes[2].innerHTML = prediction[4].className + ": " + prediction[4].probability.toFixed(2) + "퍼센트입니다.";
+            }
+            else if(prediction[5].probability > 0.7){
+                labelContainer.childNodes[0].innerHTML = "위 강아지는 (토이)푸들입니다."
+                labelContainer.childNodes[1].innerHTML = "독일이 원산인 개의 품종. 프랑스인들이 좋아하는 강아지이며 프랑스를 대표하는 이미지 중 하나이기도 하다.일반적으로 '스탠다드, 미니어쳐, 토이' 3가지로 구분한다. "
+                labelContainer.childNodes[2].innerHTML = prediction[5].className + ": " + prediction[5].probability.toFixed(2) + "퍼센트입니다.";
+                
             }
             else{
-                labelContainer.childNodes[0].innerHTML = "모르겠습니다."
+                labelContainer.childNodes[0].innerHTML = "데이터에 없는 강아지 종류입니다."
+                
             }
             // for (let i = 0; i < maxPredictions; i++) {
             //     const classPrediction =
