@@ -11,7 +11,7 @@
 
 <body>
     <h1>6가지 강아지 종 분류하기</h1>
-    <p>골든리트리버, 시츄, 말티즈, 보더콜리, 브렌치 불독, 토이푸들을 구별해서 이에 대한 설명을 보여주는 웹 앱</p>
+    <p>골든리트리버, 시츄, 말티즈, 보더콜리, 프렌치 불독, 토이푸들을 구별해서 이에 대한 설명을 보여주는 웹 앱</p>
     <button type="button" onclick="init()">Start</button>
     <button type="button" onclick="predict()">Predict</button>
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -78,7 +78,7 @@
             if(prediction[0].probability > 0.7){
                 labelContainer.childNodes[0].innerHTML = "위 강아지는 골든리트리버입니다."
                 labelContainer.childNodes[1].innerHTML = "원산지는 영국의 스코틀랜드 지역이다.이름대로 윤기가 흐르는 크림빛 또는 금빛의 풍성한 털이 가장 큰 특징이며 은은하게 귀티가 흐르는 인상이다. 신장 51~61cm, 체중 25~40kg 정도이다."
-                labelContainer.childNodes[2].innerHTML = prediction[0].className + ": " + prediction[0].probability.toFixed(2) + "퍼센트입니다.";
+                labelContainer.childNodes[2].innerHTML = prediction[0].className + ": " + prediction[0].probability.toFixed(2)*100 + "퍼센트입니다.";
             }
             else if(prediction[1].probability > 0.7){
                 labelContainer.childNodes[0].innerHTML = "위 강아지는 시츄입니다."
